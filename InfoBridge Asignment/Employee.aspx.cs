@@ -55,19 +55,18 @@ namespace InfoBridge_Assignment
             {
                
                 int id = int.Parse(txtId.Text);
-                string name = txtName.Text, sex = drpSex.Text, phone = txtPhone.Text,address=txtAddress.Text, dateofbirth = txtDateOfBirth.Text;
                 string image = Path.GetFileName(FileUpload1.FileName);
                 FileUpload1.SaveAs(Server.MapPath("EmployeeImg/") + image);
                 string qry = "Insert into Employee values(@Id,@Name,@DateOfBirth,@Sex,@Phone,@Address,@Image)";
                 cmd = new SqlCommand(qry, con);
                 
-                cmd.Parameters.AddWithValue("@Id", id);
-                cmd.Parameters.AddWithValue("@Name", name);
-                cmd.Parameters.AddWithValue("@DateOfBirth", dateofbirth);
-                cmd.Parameters.AddWithValue("@Sex", sex);
-                cmd.Parameters.AddWithValue("@Phone", phone);
-                cmd.Parameters.AddWithValue("@Address", address);
-                cmd.Parameters.AddWithValue("@Image", image);
+                cmd.Parameters.AddWithValue("@Id", txtId.Text);
+                cmd.Parameters.AddWithValue("@Name", txtName.Text);
+                cmd.Parameters.AddWithValue("@DateOfBirth", txtDateOfBirth.Text);
+                cmd.Parameters.AddWithValue("@Sex", drpSex.Text);
+                cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+                cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
+                cmd.Parameters.AddWithValue("@Image", FileUpload1.FileName);
                 con.Open();
                 
                 cmd.ExecuteNonQuery();
@@ -104,7 +103,7 @@ namespace InfoBridge_Assignment
                 int id = int.Parse(txtId.Text);
                 string qry = "SELECT * FROM Employee WHERE Id = @Id";
                 cmd = new SqlCommand(qry, con);
-                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Id", txtId.Text);
                 con.Open();
                 SqlDataReader reader = cmd.ExecuteReader();
                 if (reader.HasRows)
@@ -133,17 +132,15 @@ namespace InfoBridge_Assignment
             try { 
        
             int id = int.Parse(txtId.Text);
-            string name = txtName.Text, sex = drpSex.Text, phone = txtPhone.Text,address=txtAddress.Text, dateofbirth = txtDateOfBirth.Text,
-            image = FileUpload1.FileName;
             string qry = "Update Employee set name=@Name,dateofbirth=@DateOfBirth,sex=@Sex,phone=@Phone,address=@address,image=@Image where @Id=id";
             cmd = new SqlCommand(qry, con);
                 cmd.Parameters.AddWithValue("@Name", txtName.Text);
-                cmd.Parameters.AddWithValue("@DateOfBirth", dateofbirth);
-                cmd.Parameters.AddWithValue("@Sex", sex);
-                cmd.Parameters.AddWithValue("@Phone", phone);
-                cmd.Parameters.AddWithValue("@Address", address);
-                cmd.Parameters.AddWithValue("@Image", image);
-                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@DateOfBirth", txtDateOfBirth.Text);
+                cmd.Parameters.AddWithValue("@Sex", drpSex.Text);
+                cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
+                cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
+                cmd.Parameters.AddWithValue("@Image", FileUpload1.FileName);
+                cmd.Parameters.AddWithValue("@Id", txtId.Text);
                 con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
@@ -168,7 +165,7 @@ namespace InfoBridge_Assignment
                 int id = int.Parse(txtId.Text);
                 string qry = "Delete Employee Where @Id=id";
                 cmd = new SqlCommand(qry, con);
-                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.Parameters.AddWithValue("@Id", txtId.Text);
                 con.Open();
                 
                 cmd.ExecuteNonQuery();
