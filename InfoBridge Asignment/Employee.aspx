@@ -73,31 +73,31 @@
             width: 50%;
         }
         .auto-style2 {
-            width: 84%;
+            width: 104%;
         }
         .auto-style3 {
             width: 104%;
             height: 793px;
         }
         .auto-style4 {
-            width: 55%;
-            height: 433px;
+            width: 93%;
+            height: 603px;
         }
         .auto-style6 {
-            width: 84%;
+            width: 104%;
             height: 25px;
         }
         .auto-style8 {
-            width: 84%;
+            width: 104%;
             height: 26px;
         }
        
         .auto-style12 {
-            width: 84%;
+            width: 104%;
             height: 30px;
         }
         .auto-style14 {
-            width: 84%;
+            width: 104%;
             height: 36px;
         }
         .auto-style15 {
@@ -210,44 +210,57 @@
                             <tr>
                                 <td colspan="2" class="auto-style18">
                                    <asp:Button ID="btnAdd" runat="server"  OnClick="btnAdd_Click" Text="Add" CssClass="btnAdd" BackColor="#FF66FF" />
-                                    &nbsp;&nbsp;<asp:Button ID="btnView" runat="server"  Text="View" CssClass="btnView" Width="119px" OnClick="btnView_Click" />
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<asp:Button ID="btnEdit" runat="server"  Text="Edit" CssClass="btnEdit" OnClick="btnEdit_Click" BackColor="#996633" BorderColor="#FFFFCC"  />
-                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnDelete" runat="server"  Text="Delete"  CssClass="btnDelete" BackColor="#3366FF" OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure to delete?')" />
+                                    &nbsp;&nbsp;<asp:Label ID="lblError1" runat="server"></asp:Label>
+                                    <asp:Button ID="btnView" runat="server"  Text="View" CssClass="btnView" Width="119px" OnClick="btnView_Click" />
+                                    <asp:Button ID="btnEdit" runat="server"  Text="Edit" CssClass="btnEdit" OnClick="btnEdit_Click" BackColor="#996633" BorderColor="#FFFFCC"  />
+                                    &nbsp;&nbsp;<asp:Label ID="lblError2" runat="server"></asp:Label>
+                                    &nbsp;<asp:Button ID="btnDelete" runat="server"  Text="Delete"  CssClass="btnDelete" BackColor="#3366FF" OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure to delete?')" />
 
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    &nbsp;<asp:Label ID="lblError3" runat="server"></asp:Label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 &nbsp;</td>
                             </tr>
                             <tr>
                                 <td class="auto-style15" style="border: thin outset #3498DB" colspan="2">
 
                                    
-                                    <asp:GridView ID="GridView1" runat="server"  ForeColor="#333333" Width="768px" AutoGenerateColumns="False" HorizontalAlign="Center" CellPadding="4" GridLines="None">
-                                        <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-                                        <Columns>
-                                            <asp:BoundField DataField="Id" HeaderText="Id" />
-                                            <asp:BoundField DataField="Name" HeaderText="Name" />
-                                            <asp:BoundField DataField="Sex" HeaderText="Sex" />
-                                            <asp:TemplateField HeaderText="Date Of Birth">
-                                            <ItemTemplate >
-                                                <asp:Label Id="labl" runat="server" DataFormateString="{0:dd/MM/yyyy}" HtmlEncode="false"
-                                                    Text='<%#Eval("DateOfBirth","{0:dd/MM/yyyy}") %>'></asp:Label>
-                                            </ItemTemplate>
-                                                </asp:TemplateField>
-                                            <asp:BoundField DataField="Phone" HeaderText="Phone" />
-                                            <asp:BoundField DataField="Address" HeaderText="Address" />
-                                            
-                                        </Columns>
-                                        <EditRowStyle HorizontalAlign="Center" VerticalAlign="Middle" BackColor="#999999" />
-                                        <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                        <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-                                        <PagerStyle HorizontalAlign="Center" VerticalAlign="Middle" BackColor="#284775" ForeColor="White" />
-                                        <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-                                        <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                                        <SortedAscendingCellStyle BackColor="#E9E7E2" />
-                                        <SortedAscendingHeaderStyle BackColor="#506C8C" />
-                                        <SortedDescendingCellStyle BackColor="#FFFDF8" />
-                                        <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
-                                    </asp:GridView>
+                                    <table class="auto-style4">
+                                        <tr>
+                                            <td class="auto-style15" colspan="2" width="30%">
+                                                <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" CellPadding="4" ForeColor="#333333" GridLines="None" HorizontalAlign="Center" Width="768px">
+                                                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                                                    <Columns>
+                                                        <asp:BoundField DataField="Id" HeaderText="Id" />
+                                                        <asp:BoundField DataField="Name" HeaderText="Name" />
+                                                        <asp:BoundField DataField="Sex" HeaderText="Sex" />
+                                            <%--<asp:BoundField DataField="DateOfBirth" HeaderText="Date Of Birth" />--%>
+                                                        <asp:TemplateField HeaderText="Date Of Birth">
+                                                            <ItemTemplate>
+                                                                <asp:Label ID="labl" runat="server" DataFormateString="{0:dd/MM/yyyy}" HtmlEncode="false" Text='<%#Eval("DateOfBirth","{0:dd/MM/yyyy}") %>'></asp:Label>
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                        <asp:BoundField DataField="Phone" HeaderText="Phone" />
+                                                        <asp:BoundField DataField="Address" HeaderText="Address" />
+                                                        <asp:TemplateField HeaderText="Photo">
+                                                            <ItemTemplate>
+                                                    <img src="EmployeeImg/<%#Eval("Image") %>" style="width:100px;height:100px" />
+                                                            </ItemTemplate>
+                                                        </asp:TemplateField>
+                                                    </Columns>
+                                                    <EditRowStyle BackColor="#999999" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                                                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" VerticalAlign="Middle" />
+                                                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                                                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                                                    <SortedAscendingCellStyle BackColor="#E9E7E2" />
+                                                    <SortedAscendingHeaderStyle BackColor="#506C8C" />
+                                                    <SortedDescendingCellStyle BackColor="#FFFDF8" />
+                                                    <SortedDescendingHeaderStyle BackColor="#6F8DAE" />
+                                                </asp:GridView>
+                                            </td>
+                                        </tr>
+                                    </table>
                                 </td>
                                 <%--<asp:BoundField DataField="DateOfBirth" HeaderText="Date Of Birth" />--%>
                             </tr>

@@ -57,7 +57,7 @@ namespace InfoBridge_Assignment
                 int id = int.Parse(txtId.Text);
                 string name = txtName.Text, sex = drpSex.Text, phone = txtPhone.Text,address=txtAddress.Text, dateofbirth = txtDateOfBirth.Text;
                 string image = Path.GetFileName(FileUpload1.FileName);
-                
+                FileUpload1.SaveAs(Server.MapPath("EmployeeImg/") + image);
                 string qry = "Insert into Employee values(@Id,@Name,@DateOfBirth,@Sex,@Phone,@Address,@Image)";
                 cmd = new SqlCommand(qry, con);
                 
@@ -72,8 +72,8 @@ namespace InfoBridge_Assignment
                 
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Successfully Added..");
-                
+                lblError1.Text = "Successfully added";
+
                 GetEmployeeList();
                 Clear_All();
             }
@@ -85,16 +85,15 @@ namespace InfoBridge_Assignment
         
         //view all employee
         void GetEmployeeList()
-        { 
-          
+        {
+
             string qry = "Select * from Employee";
-            cmd= new SqlCommand(qry,con);
-            con.Open() ;
-            SqlDataAdapter da = new SqlDataAdapter(cmd);
-            DataTable dt = new DataTable();
-            da.Fill(dt);
-            GridView1.DataSource = dt;
+            cmd = new SqlCommand(qry, con);
+            con.Open();
+            SqlDataReader reader = cmd.ExecuteReader();
+            GridView1.DataSource = reader;
             GridView1.DataBind();
+            con.Close();
         }
         
         //View by Id
@@ -102,21 +101,31 @@ namespace InfoBridge_Assignment
         {
             try
             {
-               
                 int id = int.Parse(txtId.Text);
-                string qry = "Select * from Employee Where @Id=id";
+                string qry = "SELECT * FROM Employee WHERE Id = @Id";
                 cmd = new SqlCommand(qry, con);
                 cmd.Parameters.AddWithValue("@Id", id);
-                SqlDataAdapter da = new SqlDataAdapter(cmd);
-                DataTable dt = new DataTable();
-                da.Fill(dt);
-                GridView1.DataSource = dt;
-                GridView1.DataBind();
+                con.Open();
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.HasRows)
+                {
+                    GridView1.DataSource = reader;
+                    GridView1.DataBind();
+                }
+                else
+                {
+                    // Handle case where no records were found for the given id.
+                    // You can display a message or take appropriate action.
+                }
+                reader.Close();
             }
-            catch(Exception ex) {
-                MessageBox.Show(ex.Message);
+            catch (Exception ex)
+            {
             }
-
+            finally
+            {
+                con.Close();
+            }
         }
         //Edit by Id
         protected void btnEdit_Click(object sender, EventArgs e)
@@ -128,7 +137,7 @@ namespace InfoBridge_Assignment
             image = FileUpload1.FileName;
             string qry = "Update Employee set name=@Name,dateofbirth=@DateOfBirth,sex=@Sex,phone=@Phone,address=@address,image=@Image where @Id=id";
             cmd = new SqlCommand(qry, con);
-                cmd.Parameters.AddWithValue("@Name", name);
+                cmd.Parameters.AddWithValue("@Name", txtName.Text);
                 cmd.Parameters.AddWithValue("@DateOfBirth", dateofbirth);
                 cmd.Parameters.AddWithValue("@Sex", sex);
                 cmd.Parameters.AddWithValue("@Phone", phone);
@@ -138,14 +147,15 @@ namespace InfoBridge_Assignment
                 con.Open();
             cmd.ExecuteNonQuery();
             con.Close();
-            MessageBox.Show("Successfully Edited..");               
-            GetEmployeeList();
+                lblError2.Text = "Successfully edited";
+
+
+                GetEmployeeList();
             Clear_All();
 
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message + "Error");
             }
         }
         
@@ -163,14 +173,15 @@ namespace InfoBridge_Assignment
                 
                 cmd.ExecuteNonQuery();
                 con.Close();
-                MessageBox.Show("Successfully Deleted");
-                
+
+                lblError3.Text = "Successfully deleted";
+
                 GetEmployeeList();
                 Clear_All();
             }
             catch(Exception ex)
             {
-                MessageBox.Show(ex.Message);
+               
             }
         }
     }
