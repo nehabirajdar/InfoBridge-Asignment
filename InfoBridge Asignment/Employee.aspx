@@ -72,9 +72,6 @@
         .auto-style1 {
             width: 50%;
         }
-        .auto-style2 {
-            width: 104%;
-        }
         .auto-style3 {
             width: 104%;
             height: 793px;
@@ -109,7 +106,17 @@
         }
        
         .auto-style18 {
-            height: 97px;
+            height: 182px;
+        }
+       
+        .auto-style19 {
+            text-align: left;
+            font-family: Calibri;
+            font-size: 20px;
+            font-weight: bold;
+            margin-left: 25px;
+            border: medium groove #3498DB;
+            height: 36px;
         }
        
     </style>
@@ -129,10 +136,10 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="30%" class="tdLable" >
+                                <td width="30%" class="auto-style19" >
                                    <asp:Label runat="server"> Id :   <span style="color:red;">*</span>                             </asp:Label>
                                        </td>
-                                <td class="auto-style2" style="border-right-style: groove; border-right-width: medium; border-right-color: #FFFFFF; border-top-style: groove; border-top-width: medium; border-top-color: #FFFFFF;">
+                                <td class="auto-style14" style="border-right-style: groove; border-right-width: medium; border-right-color: #FFFFFF; border-top-style: groove; border-top-width: medium; border-top-color: #FFFFFF;">
                                     <asp:TextBox ID="txtId" runat="server" Width="253px" ></asp:TextBox>
                                 </td>
                             </tr>
@@ -210,15 +217,17 @@
                             <tr>
                                 <td colspan="2" class="auto-style18">
                                    <asp:Button ID="btnAdd" runat="server"  OnClick="btnAdd_Click" Text="Add" CssClass="btnAdd" BackColor="#FF66FF" />
-                                    &nbsp;&nbsp;<asp:Label ID="lblError1" runat="server"></asp:Label>
-                                    <asp:Button ID="btnView" runat="server"  Text="View" CssClass="btnView" Width="119px" OnClick="btnView_Click" />
+                                    &nbsp;&nbsp;<asp:Button ID="btnView" runat="server"  Text="View" CssClass="btnView" Width="119px" OnClick="btnView_Click" />
                                     <asp:Button ID="btnEdit" runat="server"  Text="Edit" CssClass="btnEdit" OnClick="btnEdit_Click" BackColor="#996633" BorderColor="#FFFFCC"  />
-                                    &nbsp;&nbsp;<asp:Label ID="lblError2" runat="server"></asp:Label>
-                                    &nbsp;<asp:Button ID="btnDelete" runat="server"  Text="Delete"  CssClass="btnDelete" BackColor="#3366FF" OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure to delete?')" />
+                                    &nbsp;&nbsp;&nbsp;<asp:Button ID="btnDelete" runat="server"  Text="Delete"  CssClass="btnDelete" BackColor="#3366FF" OnClick="btnDelete_Click" OnClientClick="return confirm('Are you sure to delete?')" />
 
-                                    &nbsp;<asp:Label ID="lblError3" runat="server"></asp:Label>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                &nbsp;</td>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+                                    &nbsp;&nbsp;&nbsp;&nbsp;<asp:Label ID="lblError1" runat="server"></asp:Label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <asp:Label ID="lblError4" runat="server"></asp:Label>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblError2" runat="server"></asp:Label>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="lblError3" runat="server"></asp:Label>
+                                    </td>
                             </tr>
                             <tr>
                                 <td class="auto-style15" style="border: thin outset #3498DB" colspan="2">

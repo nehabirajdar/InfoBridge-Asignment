@@ -57,13 +57,13 @@ namespace InfoBridge_Assignment
                 int id = int.Parse(txtId.Text);
                 string image = Path.GetFileName(FileUpload1.FileName);
                 FileUpload1.SaveAs(Server.MapPath("EmployeeImg/") + image);
-                string qry = "Insert into Employee values(@Id,@Name,@DateOfBirth,@Sex,@Phone,@Address,@Image)";
+                string qry = "Insert into Employee values(@Id,@Name,@Sex,@DateOfBirth,@Phone,@Address,@Image)";
                 cmd = new SqlCommand(qry, con);
                 
                 cmd.Parameters.AddWithValue("@Id", txtId.Text);
                 cmd.Parameters.AddWithValue("@Name", txtName.Text);
                 cmd.Parameters.AddWithValue("@DateOfBirth", txtDateOfBirth.Text);
-                cmd.Parameters.AddWithValue("@Sex", drpSex.Text);
+                cmd.Parameters.AddWithValue("@Sex", drpSex.SelectedValue.ToString());
                 cmd.Parameters.AddWithValue("@Phone", txtPhone.Text);
                 cmd.Parameters.AddWithValue("@Address", txtAddress.Text);
                 cmd.Parameters.AddWithValue("@Image", FileUpload1.FileName);
@@ -78,7 +78,7 @@ namespace InfoBridge_Assignment
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                lblError1.Text = ex.Message;
             }
         }
         
@@ -113,17 +113,20 @@ namespace InfoBridge_Assignment
                 }
                 else
                 {
-                    // Handle case where no records were found for the given id.
-                    // You can display a message or take appropriate action.
+                    
                 }
                 reader.Close();
             }
             catch (Exception ex)
             {
+                lblError4.Text = ex.Message;
+
             }
             finally
             {
                 con.Close();
+                
+
             }
         }
         //Edit by Id
@@ -153,6 +156,7 @@ namespace InfoBridge_Assignment
             }
             catch (Exception ex)
             {
+                lblError2.Text = ex.Message;
             }
         }
         
@@ -178,7 +182,7 @@ namespace InfoBridge_Assignment
             }
             catch(Exception ex)
             {
-               
+                lblError3.Text = ex.Message; 
             }
         }
     }

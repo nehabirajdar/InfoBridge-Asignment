@@ -114,15 +114,6 @@ namespace InfoBridge_Assignment
         protected global::System.Web.UI.WebControls.Button btnAdd;
 
         /// <summary>
-        /// lblError1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError1;
-
-        /// <summary>
         /// btnView control.
         /// </summary>
         /// <remarks>
@@ -141,15 +132,6 @@ namespace InfoBridge_Assignment
         protected global::System.Web.UI.WebControls.Button btnEdit;
 
         /// <summary>
-        /// lblError2 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError2;
-
-        /// <summary>
         /// btnDelete control.
         /// </summary>
         /// <remarks>
@@ -157,6 +139,33 @@ namespace InfoBridge_Assignment
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnDelete;
+
+        /// <summary>
+        /// lblError1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError1;
+
+        /// <summary>
+        /// lblError4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError4;
+
+        /// <summary>
+        /// lblError2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError2;
 
         /// <summary>
         /// lblError3 control.
